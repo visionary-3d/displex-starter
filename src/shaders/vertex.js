@@ -15,6 +15,7 @@ vec3 hash33(vec3 p3) {
     return -1.0 + 2.0 * fract(vec3((p3.x + p3.y)*p3.z, (p3.x+p3.z)*p3.y, (p3.y+p3.z)*p3.x));
 }
 
+// ? Perlin noise
 float pnoise(vec3 p) {
     vec3 pi = floor(p);
     vec3 pf = p - pi;
@@ -44,9 +45,7 @@ void main() {
     vPosition = position;
     vNormal = normal;
     
-    float noisePlacement = clamp((abs(uv.x - 0.5) - 0.3) * 4.0, 0.0, 1.0);
-
-    vec3 displacement = vec3(pnoise(position * 5.f)) * noisePlacement;
+    vec3 displacement = vec3(0.0);
     vec3 newPosition = vPosition + vNormal * displacement; 
 
     gl_Position = projectionMatrix * modelViewMatrix * vec4(newPosition, 1.0);
