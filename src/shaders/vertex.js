@@ -3,6 +3,7 @@ export default /*glsl*/`
 varying vec3 vPosition;
 varying vec3 vNormal;
 varying vec2 vUv;
+varying vec3 vPattern;
 
 uniform float uTime;
 
@@ -45,7 +46,10 @@ void main() {
     vPosition = position;
     vNormal = normal;
     
-    vec3 displacement = vec3(0.0);
+    float noiseMultiplier = clamp((abs(vUv.x - 0.5) - 0.3 + sin(uTime)) * 3.0, 0.0, 1.0);
+    vPattern = vec3(noiseMultiplier);
+    float noise = pnoise(vPosition * 5.0);
+    float displacement = noise * noiseMultiplier;
     vec3 newPosition = vPosition + vNormal * displacement; 
 
     gl_Position = projectionMatrix * modelViewMatrix * vec4(newPosition, 1.0);

@@ -17,12 +17,11 @@ init();
 let gui = new GUI();
 
 const torus = new THREE.Mesh(
-  new THREE.TorusGeometry(1, 0.3, 100, 100),
+  new THREE.TorusGeometry(1, 0.3, 500, 500),
   new THREE.ShaderMaterial({
     vertexShader,
     fragmentShader,
     side: THREE.DoubleSide,
-    wireframe: true,
     uniforms: {
       uTime: { value: 0 },
     },
@@ -33,6 +32,14 @@ scene.add(torus);
 
 let composer = new EffectComposer(gl);
 composer.addPass(new RenderPass(scene, camera));
+
+const bloomPass = new UnrealBloomPass(
+  new THREE.Vector2(window.innerWidth, window.innerHeight),
+  1.4,
+  0.0001,
+  0.01
+);
+composer.addPass(bloomPass);
 
 const clock = new THREE.Clock();
 
