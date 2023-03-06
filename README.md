@@ -9,5 +9,7 @@
 ### Final Result :
 [Demo](https://displex.netlify.app/)
 
+[Page In My Portfolio](https://aryaross.com/work/displex)
+
 
 ![image](https://res.cloudinary.com/aryasalehi-com/image/upload/v1636475164/Portfolio/displex/experience.png)
