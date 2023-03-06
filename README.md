@@ -1,4 +1,4 @@
-# Shader Tutorial 1
+# Displex
 
 ### Video Tutorial : 
 [Realtime abstract animation using THREE.js](...)
